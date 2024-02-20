@@ -4,6 +4,8 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
+use function PHPUnit\Framework\once;
+
 return new class extends Migration
 {
     /**
@@ -11,15 +13,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('gares', function (Blueprint $table) {
             $table->id();
-            $table->string('image');
             $table->string('name');
-            $table->string('email')->unique();
-            $table->string('tel')->unique();
-            $table->string('password');
-            $table->string('role');
-            $table->rememberToken();
+            $table->unsignedBigInteger('ville_id');
+            $table->dateTime('date_depart');
+            $table->dateTime('date_arrivee');
+            $table->foreign('ville_id')->references('id')->on('villes')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }
@@ -29,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('gares');
     }
 };
