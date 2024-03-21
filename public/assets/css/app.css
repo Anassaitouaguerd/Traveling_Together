@@ -1,0 +1,53 @@
+body {
+    background: url("../img/background.jpg");
+    background-color: rgb(60, 60, 60);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-blend-mode: multiply;
+}
+
+.card {
+    background-color: #1d2226d9;
+    color: white;
+}
+.alert {
+    padding: 15px 10px;
+}
+.alert-danger {
+    --bs-alert-color: #e16470;
+    --bs-alert-bg: #d9636e00;
+    --bs-alert-border-color: #f5c2c7;
+}
+a {
+    color: #47b5ff;
+}
+.shesh {
+    background-color: #dae2e70f;
+    color: white;
+}
+.form-control:focus {
+    color: white;
+    background-color: transparent;
+    border-color: #86b7fe;
+    outline: 0;
+    box-shadow: 0 0 0 0.25rem rgb(71 181 255 / 4%);
+}
+.btn-outline-dark {
+    --bs-btn-color: #ffffff;
+    --bs-btn-border-color: #ffffff;
+    --bs-btn-hover-bg: #ffffff;
+}
+
+.hvr:hover {
+    color: black;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type="number"] {
+    -moz-appearance: textfield;
+}
