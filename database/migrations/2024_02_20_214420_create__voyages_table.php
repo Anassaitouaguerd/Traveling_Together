@@ -14,8 +14,6 @@ return new class extends Migration
         Schema::create('voyages', function (Blueprint $table) {
             $table->id();
             $table->float('prix');
-            $table->unsignedBigInteger('reservation_id');
-            $table->foreign('reservation_id')->references('id')->on('reservations')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }
