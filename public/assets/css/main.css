@@ -1,0 +1,17 @@
+#successful {
+    position: relative;
+    animation: successful 3s forwards;
+}
+
+@keyframes successful {
+    0% {
+        opacity: 0.5; /* Full opacity */
+        left: 0;
+        top: 0;
+    }
+    25% {
+        opacity: 1; /* 50% opacity */
+        left: 5%; /* Move 100px to the right */
+        top: 0;
+    }
+}
