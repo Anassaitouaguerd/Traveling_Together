@@ -7,17 +7,19 @@ use Illuminate\Database\Eloquent\Model;
 
 class Voyages extends Model
 {
-    use HasFactory;
-    protected $info_voyage = [
-        'prix',
-        'reservation_id',
-      ];
-      public function reservation()
-      {
-        return $this->belongsTo(Reservations::class);
-      }
-      public function train()
-      {
-        return $this->hasMany(Trains::class);
-      }
+  use HasFactory;
+  protected $fillable = [
+    'prix',
+    'gare_depart',
+    'gare_arrivee',
+    'reservation_id',
+  ];
+  public function reservation()
+  {
+    return $this->belongsTo(Reservations::class);
+  }
+  public function train()
+  {
+    return $this->hasMany(Trains::class);
+  }
 }
