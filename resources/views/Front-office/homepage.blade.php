@@ -102,8 +102,7 @@
                     <div class="rounded-3" id="Parent" onclick="TackeValue(event)">
                     </div>
                     <div class="col-lg-6 text-start" style="position: relative;">
-                        <label for="" class="form-label ms-2" style="color:#80808078;">gare de distination
-                            (optionel)</label>
+                        <label for="" class="form-label ms-2" style="color:#80808078;">gare de distination</label>
                         <input class="form-control " type="text" name="gare_distination" id="gare_distination"
                             placeholder="Tanger ville.." autocomplete="false">
                         <div class="rounded-bottom"
