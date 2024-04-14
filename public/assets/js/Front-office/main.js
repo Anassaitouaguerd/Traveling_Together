@@ -9,10 +9,10 @@ function Search(e) {
     const getInputs = e.currentTarget.querySelectorAll("input");
     const _token = getInputs[0].value;
     const gare_depart = getInputs[1].value;
-    const gare_distination = getInputs[3].value;
+    const gare_distination = getInputs[2].value;
     InputDepart = getInputs[1];
-    InputDepart = getInputs[1];
-    InputDistination = getInputs[3];
+    InputDistination = getInputs[2];
+    console.log(InputDistination);
     const data = {
         gare_depart: gare_depart,
         gare_distination: gare_distination,
@@ -26,6 +26,7 @@ function Search(e) {
         if (xml.readyState === 4 && xml.status === 200) {
             const res = JSON.parse(xml.responseText);
             if (!res) return;
+
             if (InputDepart === document.activeElement) {
                 Parent.style.display = "block";
                 Parent.innerHTML = "";
@@ -41,6 +42,7 @@ function Search(e) {
             if (InputDistination === document.activeElement) {
                 Parent2.style.display = "block";
                 Parent2.innerHTML = "";
+                console.log(res);
                 for (let i = 0; i < res[1].length; i++) {
                     Parent2.insertAdjacentHTML(
                         "beforeend",
