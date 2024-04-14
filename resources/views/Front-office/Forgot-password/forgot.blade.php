@@ -29,8 +29,18 @@
                 <div class="col-lg-6 mb-5 mb-lg-0 ">
                     <div class="card ">
                         <div class="card-body px-4 py-5 px-md-5">
-
-
+                            <div>
+                                @if (session()->has('success'))
+                                <p class="bg-success form-control-lg p-2 rounded-3">
+                                    {{session('success')}}
+                                </p>
+                                @endif
+                                @if (session()->has('errore'))
+                                <p class="bg-danger form-control-lg p-2 rounded-3">
+                                    {{session('errore')}}
+                                </p>
+                                @endif
+                            </div>
                             <form id="login" action="/forgotPass" class="needs-validation py-5" method="POST">
                                 @csrf
                                 <div>
@@ -61,7 +71,7 @@
 
 
                                 <!-- Submit button -->
-                                <button type="submit" name="forget" class="btn btn-outline-light btn-block my-4 w-100">
+                                <button type="submit" class="btn btn-outline-light btn-block my-4 w-100">
                                     Forget
                                 </button>
                                 <div class="d-block">
