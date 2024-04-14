@@ -30,7 +30,11 @@
                     <div class="card ">
                         <div class="card-body px-4 py-5 px-md-5">
 
-
+                            @if (session()->has('success'))
+                            <p class="bg-success form-control-lg p-2 rounded-3">
+                                {{session('success')}}
+                            </p>
+                            @endif
                             <form id="login" action="/login" class="needs-validation py-5" method="POST">
                                 @csrf
                                 <div>
