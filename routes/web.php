@@ -6,7 +6,6 @@ use App\Http\Controllers\Back_office\CRUD\TrainController;
 use App\Http\Controllers\Back_office\CRUD\UserController;
 use App\Http\Controllers\Back_office\CRUD\VoyageController;
 use App\Http\Controllers\Front_office\SearchController;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -26,6 +25,9 @@ Route::get('/admin/dashboard', function () {
 Route::get('/home', function () {
     return view('Front-office.homepage');
 });
+Route::get('/train', function () {
+    return view('Front-office.components.trains');
+});
 Route::get('/', function () {
     return view('Front-office.homepage');
 });
@@ -41,6 +43,9 @@ Route::get('/index', function () {
 Route::get('/forgotPage', function () {
     return view('Front-office.Forgot-password.forgot');
 });
+// Route::get('/SearchTrains', function () {
+//     return view('Front-office.Reservations.trains');
+// });
 
 # parte Authentication 
 
