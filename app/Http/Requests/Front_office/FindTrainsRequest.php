@@ -25,7 +25,6 @@ class FindTrainsRequest extends FormRequest
             'gare_depart' => 'required',
             'gare_distination' => 'required',
             'date_depart' => 'required|date',
-            'date_retour' => 'required|date',
         ];
     }
 }
