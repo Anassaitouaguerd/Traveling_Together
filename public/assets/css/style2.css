@@ -144,6 +144,12 @@ span.bubble1::after {
 #shoppingOrdersSpan {
     position: absolute;
 }
+.bg-opacit {
+    background: rgb(142, 189, 207, 0.5);
+}
+.text-cl {
+    font-size: larger;
+}
 
 /* CUSTOM WIDTHS */
 .w-10,
