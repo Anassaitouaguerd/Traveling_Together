@@ -12,7 +12,8 @@ class Voyages extends Model
     'prix',
     'gare_depart',
     'gare_arrivee',
-    'reservation_id',
+    'date_depart',
+    'date_arrivee',
   ];
   public function reservation()
   {
@@ -21,5 +22,13 @@ class Voyages extends Model
   public function train()
   {
     return $this->hasMany(Trains::class);
+  }
+  public function rolation_gare_depart()
+  {
+    return $this->belongsTo(Gares::class, 'gare_depart');
+  }
+  public function rolation_gare_arrivee()
+  {
+    return $this->belongsTo(Gares::class, 'gare_arrivee');
   }
 }

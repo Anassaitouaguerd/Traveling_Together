@@ -11,9 +11,7 @@ class Gares extends Model
   use HasFactory;
   protected $fillable = [
     'name',
-    'ville_id',
-    'date_depart',
-    'date_arrivee',
+    'ville_id'
   ];
   public function ville()
   {
