@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Back_office\CRUD;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Back_office\Gares\AddGaresRequest;
 use App\Http\Requests\Back_office\Gares\UpdateGaresRequest;
 use App\Models\Gares;
+use App\Models\Villes;
 use Illuminate\Http\Request;
 
 class GaresController extends Controller
@@ -15,7 +17,8 @@ class GaresController extends Controller
     public function index()
     {
         $gares = Gares::all();
-        return view('Back-office.Gares', compact('gares'));
+        $villes = Villes::all();
+        return view('Back-office.Gares', compact('gares', 'villes'));
     }
 
     /**
@@ -29,14 +32,9 @@ class GaresController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(AddGaresRequest $request)
     {
-        Gares::craete([
-            'name' => $request->name,
-            'ville_id' => $request->ville_id,
-            'date_depart' => $request->date_depart,
-            'date_arrivee' => $request->date_arrivee,
-        ]);
+        Gares::create($request->validated());
         return back()->with('success', 'Add gare with successful');
     }
 

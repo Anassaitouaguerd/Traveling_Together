@@ -36,11 +36,7 @@ class TrainController extends Controller
      */
     public function store(AddTrainRequest $request)
     {
-        Trains::create([
-            'name' => $request->name,
-            'voyage_id' => $request->voyage_id,
-            'gare_id' => $request->gare_id,
-        ]);
+        Trains::create($request->validated());
         return back()->with('success', 'Add Train with success');
     }
 

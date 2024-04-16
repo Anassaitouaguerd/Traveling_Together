@@ -34,12 +34,8 @@ class VoyageController extends Controller
      */
     public function store(AddVoyageRequest $request)
     {
-        $voyage = Voyages::create([
-            'prix' => $request->prix,
-            'gare_depart' => $request->gare_depart,
-            'gare_arrivee' => $request->gare_arrivee
-        ]);
-        return back()->with('success', 'Voyage Crested successful');
+        Voyages::create($request->validated());
+        return back()->with('success', 'Voyage created successfully');
     }
 
     /**
