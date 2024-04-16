@@ -24,8 +24,6 @@ class UpdateGaresRequest extends FormRequest
         return [
             'name' => 'required',
             'ville_id' => 'required',
-            'date_depart' => 'required',
-            'date_arrivee' => 'required',
         ];
     }
 }

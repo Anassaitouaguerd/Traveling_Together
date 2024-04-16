@@ -22,10 +22,8 @@ class AddGaresRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'requierd',
+            'name' => 'required',
             'ville_id' => 'required',
-            'date_depart' => 'requierd|date',
-            'date_arrivee' => 'requierd|date'
         ];
     }
 }

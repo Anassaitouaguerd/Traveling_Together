@@ -24,7 +24,9 @@ class AddVoyageRequest extends FormRequest
         return [
             'prix' => 'required|numeric',
             'gare_depart' => 'required',
-            'gare_arrivee' => 'required'
+            'gare_arrivee' => 'required',
+            'date_depart' => 'required',
+            'date_arrivee' => 'required'
         ];
     }
 }

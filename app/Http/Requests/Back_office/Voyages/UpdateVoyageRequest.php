@@ -22,7 +22,11 @@ class UpdateVoyageRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'prix' => 'required|numeric',
+            'gare_depart' => 'required',
+            'gare_arrivee' => 'required',
+            'date_depart' => 'required',
+            'date_arrivee' => 'required'
         ];
     }
 }
