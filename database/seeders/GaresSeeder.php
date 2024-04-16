@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\Villes;
+use App\Models\Gares;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -13,7 +13,6 @@ class GaresSeeder extends Seeder
      */
     public function run(): void
     {
-        $villes = new Villes();
         $regions = [
             'Casablanca',
             'El Jadida',
@@ -50,9 +49,9 @@ class GaresSeeder extends Seeder
             'EL Khemisset'
         ];
         foreach ($regions as $region) {
-            $villes = new Villes();
-            $villes->name = $region;
-            $villes->save();
+            $Gare = new Gares();
+            $Gare->name = $region;
+            $Gare->save();
         }
     }
 }
