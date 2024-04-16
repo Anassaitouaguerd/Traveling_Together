@@ -16,9 +16,7 @@ return new class extends Migration
         Schema::create('gares', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->unsignedBigInteger('ville_id');
-            $table->dateTime('date_depart');
-            $table->dateTime('date_arrivee');
+            $table->unsignedBigInteger('ville_id')->nullable()->default(NULL);
             $table->foreign('ville_id')->references('id')->on('villes')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });

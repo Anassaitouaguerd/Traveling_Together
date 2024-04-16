@@ -14,6 +14,9 @@ return new class extends Migration
         Schema::table('voyages', function (Blueprint $table) {
             $table->unsignedBigInteger('gare_depart');
             $table->unsignedBigInteger('gare_arrivee');
+            $table->dateTime('date_depart');
+            $table->dateTime('date_arrivee');
+            $table->timestamps();
             $table->foreign('gare_depart')->references('id')->on('gares')->onUpdate('cascade')->onDelete('cascade');
             $table->foreign('gare_arrivee')->references('id')->on('gares')->onUpdate('cascade')->onDelete('cascade');
         });

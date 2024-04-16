@@ -14,7 +14,6 @@ return new class extends Migration
         Schema::create('voyages', function (Blueprint $table) {
             $table->id();
             $table->float('prix');
-            $table->timestamps();
         });
     }
 
