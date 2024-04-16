@@ -82,9 +82,9 @@
                         <div class="card h-100">
                             <div class="card-body">
                                 <h4 class="card-title"></h4>
-                                <h6 class="card-text text-secondary">Nmae : {{$train->name}}</h6>
-                                <h6 >Voyage : {{$train->voyage->gare_depart}}</h6>
-                                <p class="card-text text-xs font-weight-bold">Gare Depart : {{$train->voyage->gare_depart}} => Gare Arrivee : {{$train->voyage->gare_arrivee}}</p>
+                                <h6 class="card-text text-secondary">Name : {{$train->name}}</h6>
+                                <h6 >Voyage : <p class="card-text text-xs pt-2 font-weight-bold">Gare Depart : {{$train->voyage->rolation_gare_depart->name}} <br /><br /> Gare Arrivee : {{$train->voyage->rolation_gare_arrivee->name}}</p></h6>
+                                
                                 <h6 class="ms-2">Gare: {{$train->gare->name}}</h6>
                             </div>
                             <div class="card-footer">
