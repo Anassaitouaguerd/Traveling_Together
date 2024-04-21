@@ -9,9 +9,11 @@ class Reservations extends Model
 {
   use HasFactory;
   protected $fillable = [
-    'dateReservation',
-    'quantite',
+    'date_reservation',
     'user_id',
+    'voyage_id',
+    'is_tecket',
+    'place',
   ];
   public function user()
   {
@@ -19,6 +21,6 @@ class Reservations extends Model
   }
   public function voyage()
   {
-    return $this->hasMany(Voyages::class);
+    return $this->belongsTo(Voyages::class);
   }
 }
