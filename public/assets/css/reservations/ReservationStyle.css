@@ -1,0 +1,139 @@
+.view-content {
+    background: #fff;
+    border-radius: 4px;
+    box-shadow: 0 22px 34px rgba(0, 0, 0, 0.1);
+    margin: 0 auto;
+    overflow: hidden;
+    width: 80%;
+}
+.addon-content {
+    padding: 64px;
+}
+.addon-content .addon-selection {
+    min-height: 340px;
+}
+.addon-selection-label {
+    align-items: center;
+    border: 1px solid #dce0e6;
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    margin-bottom: 16px;
+    padding: 24px;
+}
+.addon-selection-label .icon {
+    height: 36px;
+    width: 36px;
+}
+svg {
+    transition: transform 0.3s;
+}
+.addon-selection-label .addon-title {
+    font-size: 19px;
+    font-style: normal;
+    font-weight: 400;
+    letter-spacing: 0.1px;
+    line-height: 24px;
+    margin-left: 24px;
+}
+.addon-selection-label .secondary-icon {
+    height: 24px;
+    margin: 0 0 0 auto;
+    width: 24px;
+}
+.addon-content .continue-to-checkout {
+    padding-top: 48px;
+}
+.addon-content .continue-to-checkout .addons-continue-btn {
+    width: 100%;
+}
+span {
+    font-family: Lato, sans-serif;
+}
+
+.rows {
+    display: flex;
+    width: 100%;
+}
+.seat {
+    align-items: center;
+    background-color: transparent;
+    display: flex;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    height: 40px;
+    justify-content: center;
+    letter-spacing: 0.1px;
+    line-height: 18px;
+    margin: 3px;
+    position: relative;
+    width: 40px;
+}
+.available {
+    cursor: pointer;
+}
+.seat-number {
+    position: absolute;
+    z-index: 1;
+}
+.icon {
+    height: 40px;
+    width: 40px;
+    background-position: 50%;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+.ms {
+    margin-left: 10px;
+}
+svg {
+    transition: transform 0.3s;
+}
+.train {
+    width: 100%;
+    overflow: hidden;
+    height: 387.6px;
+    transition: height 0.6s ease;
+}
+.contai {
+    overflow-x: scroll;
+}
+.hide-train {
+    height: 0px;
+}
+.separt {
+    margin-left: 20px;
+    height: 125px;
+    margin-top: 152px;
+    border: 1px solid;
+}
+.show-train {
+    height: 100%;
+    transition: height 0.3s ease;
+}
+.w-38 {
+    width: 38%;
+}
+.bg-blueSky {
+    background: #ade8f4;
+}
+.active {
+    background-color: deepskyblue;
+    font-size: larger;
+}
+.separt-trains {
+    border: 1px solid;
+    /* margin-left: 20px; */
+}
+.Iron-chain {
+    display: flex;
+    align-items: center;
+}
+.cart {
+    border: 1px solid;
+    border-radius: 20px;
+    padding: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
