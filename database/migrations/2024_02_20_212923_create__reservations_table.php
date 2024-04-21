@@ -1,4 +1,5 @@
 <?php
+
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -12,9 +13,10 @@ return new class extends Migration
     {
         Schema::create('reservations', function (Blueprint $table) {
             $table->id();
-            $table->dateTime('dateReservation'); 
-            $table->unsignedBigInteger('quantite');
+            $table->dateTime('date_reservation');
             $table->unsignedBigInteger('user_id');
+            $table->boolean('is_tecket')->default(false);
+            $table->unsignedBigInteger('place');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
@@ -25,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('reservations'); 
+        Schema::dropIfExists('reservations');
     }
 };
