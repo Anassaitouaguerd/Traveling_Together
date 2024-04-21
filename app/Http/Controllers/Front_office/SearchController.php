@@ -37,7 +37,6 @@ class SearchController extends Controller
 
         $gare_depart = Gares::where('name', $point_depart)->first();
         $gare_distination = Gares::where('name', $point_distination)->first();
-
         $voyage = Voyages::where('gare_depart', $gare_depart->id)
             ->where('gare_arrivee', $gare_distination->id)
             ->get();
