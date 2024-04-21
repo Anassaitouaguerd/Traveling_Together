@@ -17,7 +17,7 @@ class Voyages extends Model
   ];
   public function reservation()
   {
-    return $this->belongsTo(Reservations::class);
+    return $this->hasMany(Reservations::class, 'voyage_id');
   }
   public function train()
   {
