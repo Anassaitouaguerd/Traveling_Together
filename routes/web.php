@@ -5,6 +5,7 @@ use App\Http\Controllers\Back_office\CRUD\GaresController;
 use App\Http\Controllers\Back_office\CRUD\TrainController;
 use App\Http\Controllers\Back_office\CRUD\UserController;
 use App\Http\Controllers\Back_office\CRUD\VoyageController;
+use App\Http\Controllers\Front_office\Reservations\ReservationsController;
 use App\Http\Controllers\Front_office\SearchController;
 use Illuminate\Support\Facades\Route;
 
@@ -60,6 +61,8 @@ Route::post('/reset/{token}', [AuthController::class, 'resetPassword']);
 
 Route::post('Search', [SearchController::class, 'index']);
 Route::post('/SearchTrains', [SearchController::class, 'FindTrains']);
+Route::get('/By-ticket/{id}', [ReservationsController::class, 'index']);
+Route::post('/reserve-place', [ReservationsController::class, 'resrvation']);
 
 Route::resources([
     '/admin/voyage' => VoyageController::class,
