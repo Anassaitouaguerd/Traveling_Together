@@ -36,7 +36,7 @@
                                         @endif
                                     </a>
                                     <ul class="dropdown-menu " aria-labelledby="dropdownMenuButton1">
-                                      <li><a class="dropdown-item" href="#">Profile</a></li>
+                                      <li><a class="dropdown-item" href="/My-profile">Profile</a></li>
                                       <li><a class="dropdown-item" href="#">Settings</a></li>
                                       <li><a class="dropdown-item" href="/log-out">Log out</a></li>
                                     </ul>
@@ -81,36 +81,44 @@
             </h3>
             <p class="text-grey">Explore the world with us </p>
 
-            <form action="./include/handlers/voyagehandler.php" id="search-trips" method="post" class="p-lg-5 needs-validation" novalidate autocomplete="off">
+            <form action="/SearchTrains" method="POST" oninput="Search(event)" class="p-lg-5 needs-validation" autocomplete="off">
+                @csrf
                 <div class="row gy-3">
-                    <div class="col-lg-6 text-start" style="position: relative;">
+                    <div class="col-lg-6 text-start mb-5" style="position: relative;">
                         <label for="" class="form-label ms-2" style="color:#80808078;">gare de depart</label>
-                        <input class="form-control" type="text" name="gare_depart" id="gare_depart" placeholder="Casa voyageur.." autocomplete="nope" required>
-                        <div class="invalid-feedback ms-2">
-                            veillez remplire la gare de départ.
-                        </div>
-                        <input type="hidden" value="" name="id_ville_gare_depart" id="id_ville_gare_depart">
-                        <div class="rounded-bottom" style="background-color:aliceblue;position:absolute; width: 94%;z-index:100;max-height:31vh;overflow:auto;" id="cities_rst1"></div>
+                        <input class="form-control" type="text" name="gare_depart" id="gare_depart"
+                            placeholder="Casa voyageur.." autocomplete="nope" required>
+                        <div class="rounded-bottom"
+                            style="background-color:aliceblue;position:absolute; width: 94%;z-index:100;max-height:31vh;overflow:auto;"
+                            id="cities_rst1"></div>
+                    </div>
+                    <div class="rounded-3" id="Parent" onclick="TackeValue(event)" style="display: none;">
                     </div>
                     <div class="col-lg-6 text-start" style="position: relative;">
-                        <label for="" class="form-label ms-2" style="color:#80808078;">gare de distination (optionel)</label>
-                        <input class="form-control " type="text" name="gare_distination" id="gare_distination" placeholder="Tanger ville.." autocomplete="false">
-                        <div class="rounded-bottom" style="background-color:aliceblue;position:absolute; width: 94%;max-height:31vh;overflow:auto;" id="cities_rst2"></div>
-                        <input type="hidden" value="" name="id_ville_gare_distination" id="id_ville_gare_distination">
+                        <label for="" class="form-label ms-2" style="color:#80808078;">gare de distination</label>
+                        <input class="form-control " type="text" name="gare_distination" id="gare_distination"
+                            placeholder="Tanger ville.." autocomplete="false">
+                        <div class="rounded-bottom"
+                            style="background-color:aliceblue;position:absolute; width: 94%;max-height:31vh;overflow:auto;"
+                            id="cities_rst2"></div>
+                    </div>
+                    <div class="rounded-3" id="Parent2" onclick="TackeValueDest(event)" style="display: none;">
                     </div>
                     <div class="col-lg-6 text-start">
                         <label for="" class="form-label ms-2" style="color:#80808078;">date de départ</label>
-                        <input class="form-control" type="datetime-local" placeholder="date de depart" name="date_depart" required>
+                        <input class="form-control" type="datetime-local" placeholder="date de depart"
+                            name="date_depart" required>
                         <div class="invalid-feedback ms-2">
                             veillez remplire la date de départ.
                         </div>
                     </div>
                     <div class="col-lg-6 text-start">
-                        <label for="" class="form-label ms-2" style="color:#80808078;">date de retour (optionel)</label>
-                        <input class="form-control" type="datetime-local" name="date_retour">
+                        <label for="" class="form-label ms-2" style="color:#80808078;">date de arrivee (optionel)</label>
+                        <input class="form-control" type="datetime-local" name="date_arrivee">
                     </div>
                     <div class="text-start">
-                        <button type="submit" class="btn text-light px-5" style="background-color:var(--aqua);border-radius: 20px;" name="search">cherchez</button>
+                        <button type="submit" class="btn text-light px-5"
+                            style="background-color:var(--aqua);border-radius: 20px;">cherchez</button>
                     </div>
                 </div>
             </form>
@@ -149,6 +157,8 @@
         const carousel = new bootstrap.Carousel('#carouselExampleIndicators');
     </script>
 </body>
+
+<script src="/assets/js/Front-office/main.js"></script>
 <script src="assets/js/main2.js"></script>
 <script>
     document.forms.namedItem("search-trips").addEventListener('submit',function (e){
@@ -167,5 +177,6 @@
         })
     })
 </script>
+
 
 </html>
