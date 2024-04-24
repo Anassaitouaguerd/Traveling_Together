@@ -1,6 +1,10 @@
 @extends('Front-office.partials.Reservation._tags_html')
-
 @section('content')
+<div id="homeImg">
+    @extends('Front-office.partials.Home._Header')
+</div>
+
+<section id="reservationBlock">
     <div class="container">
         <div class="view-content" >
             <div class="addon-content">
@@ -30,10 +34,10 @@
                         </div>
                     </div>
                     <div class="train hide-train">
-                        <div class="d-flex justify-content-center mb-3" onclick="changeClasses(event)">
-                            <button class="active border-0 me-3 rounded-2 w-15">1</button>
-                            <button class="border-0 me-3 rounded-2 w-15">2</button>
-                            <button class="w-15 border-0 rounded-2">3</button>
+                        <div class="d-flex justify-content-center mb-3" onclick="displayClasses(event)">
+                            <button class="active border-0 me-3 rounded-2 w-15" data-class="1">Classe 1</button>
+                            <button class="border-0 me-3 rounded-2 w-15" data-class="2">Classe 2</button>
+                            <button class="w-15 border-0 rounded-2" data-class="3"> Classe 3</button>
                         </div>
                         <div class="d-flex contai">
                                 {{-- class 1 --}}
@@ -102,16 +106,15 @@
                                     @endfor
                                 </div>
                             </div>
-                            {{-- <hr class="separt-trains ms"> --}}
+
                             <div class="Iron-chain">
                                 <img src="/assets/img/icons8-chain-intermediate-50.png" alt="" style="
-                                transform: rotate(90deg);
-                            ">
+                                transform: rotate(90deg);"
+                            >
                             </div>
-                            {{-- <hr class="separt-trains"> --}}
 
                                 {{-- class 2  --}}
-                            <div class="cart">
+                            <div class="cart show_carts">
                                 <div class="d-flex" onclick="chooseSeate(event)">
                                     @php
                                         $count = 51;
@@ -175,17 +178,16 @@
                                     @endfor
                                 </div>
                             </div>
-                            {{-- <hr class="separt-trains ms"> --}}
+
                             <div class="Iron-chain">
                                 <img src="/assets/img/icons8-chain-intermediate-50.png" alt="" style="
-                                transform: rotate(90deg);
-                            ">
+                                transform: rotate(90deg);"
+                            >
                             </div>
-                            {{-- <hr class="separt-trains"> --}}
 
 
                                 {{-- class 3 --}}
-                            <div class="cart">
+                            <div class="cart" >
                                 <div class="d-flex" onclick="chooseSeate(event)">
                                     @php
                                         $count = 100;
@@ -248,7 +250,6 @@
                                     @endfor
                                 </div>
                             </div>
-                            {{-- <hr class="separt-trains ms"> --}}
 
 
                         </div>
@@ -260,6 +261,8 @@
             </div>
         </div>
     </div>
+</section>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
 
     const showTrainsSeats = () => document.querySelector(".train").classList.toggle("hide-train");
@@ -293,12 +296,7 @@
     }
     function SubmitAllData() {
     // Extract necessary data for ticket reservation
-    const nameTrain = "{{$train->name}}";
     const idTrain = "{{$train->id}}";
-    const date_depart = "{{$train->voyage->date_depart}}";
-    const date_arrivee = "{{$train->voyage->date_arrivee}}";
-    const voyage_gareDepart = "{{$train->voyage->rolation_gare_depart->name}}";
-    const voyage_gareArrivee = "{{$train->voyage->rolation_gare_arrivee->name}}";
     const csrfToken ="{{ csrf_token() }}";
 
     // Select all seat elements
@@ -320,26 +318,42 @@
     const data = {
         _token: csrfToken,
         idTrain: idTrain,
-        nameTrain: nameTrain,
-        date_depart: date_depart,
-        date_arrivee: date_arrivee,
-        voyage_gareDepart: voyage_gareDepart,
-        voyage_gareArrivee: voyage_gareArrivee,
         selectedSeats: selectedSeats
     };
 
-    // Send POST request to reservation endpoint
+   // Send POST request to reservation endpoint
     fetch("http://127.0.0.1:8000/reserve-place", {
         method: "POST",
         headers: {
             "Content-type": "application/json",
         },
         body: JSON.stringify(data),
-    });
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        return response.json();
+    })
+    .then(data => {
+        // console.log(data);
+        window.location.href = `/My-ticket/${data}`;
+    })
+    .catch(error => {
+        Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "somthing is wrong ",
+            footer: '<a href="#">Why do I have this issue?</a>'
+        });
+    }
+);
+
 }
-function changeClasses(e) {
+function displayClasses(e) {
     const buttonClicked = e.target;
     const allButtons = e.currentTarget.querySelectorAll("button");
+    const train = document.querySelector(".contai");
     
     allButtons.forEach(button => {
         if (button.classList.contains("active")) {
@@ -348,6 +362,16 @@ function changeClasses(e) {
     });
     
     buttonClicked.classList.add("active");
+
+    // position trains
+
+    const leftPosition = {
+        "1": "0px",
+        "2": "-573px",
+        "3": "-1259px"
+    };
+console.log(buttonClicked.dataset.class);
+    train.style.left = leftPosition[buttonClicked.dataset.class];
 }
 
 
