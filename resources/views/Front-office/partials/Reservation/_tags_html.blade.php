@@ -13,13 +13,48 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
 </head>
 
-<body>
-@yield('content')
+<body id="bg-body">
+{{-- <div class="bg-bl"></div> --}}
 
+    @yield('content')
+    <footer class="bg-opacit footer mt-5">
+        <div class="container">
+            <div class="row p-3 row">
+                <div class="col-md-4">
+                    <h5>Quick Links</h5>
+                    <ul>
+                        <li><a href="/">Home</a></li>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Services</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h5>Contact Us</h5>
+                    <p>190 salam, Elksiba</p>
+                    <p>Email: travling@together.com</p>
+                    <p>Phone: +212697896452</p>
+                </div>
+                <div class="col-md-4">
+                    <h5>Follow Us</h5>
+                    <ul class="social-icons">
+                        <li><a href="#"><i class="bi bi-facebook"></i></a></li>
+                        <li><a href="#"><i class="bi bi-twitter"></i></a></li>
+                        <li><a href="#"><i class="bi bi-instagram"></i></a></li>
+                        <li><a href="#"><i class="bi bi-linkedin"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="text-center py-3">
+            <p>&copy; 2024 Your Company. All Rights Reserved.</p>
+        </div>
+    </footer>
+    
 </body>
 
-
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/js/bootstrap.bundle.min.js"></script>
 <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.13.1/js/dataTables.bootstrap5.min.js"></script>
 <script>
@@ -28,23 +63,9 @@
     });
 </script>
 <script>
-    document.forms.namedItem("add_train_form").addEventListener('submit', function(e) {
-        let gare_entred = $("#id_holder").val();
-        if (gare_entred == "") {
-            e.preventDefault();
-            alert("invalid gare identiant");
-            return;
-        }
-        //alert(isGareExist(gare_entred))
-        isGareExist(gare_entred, "../handlers/garehandler.php").then(data => {
-            if (!data) {
-                e.preventDefault();
-                alert("invalid gare identiant");
-            }
-        })
-
-    })
+    const carousel = new bootstrap.Carousel('#carouselExampleIndicators');
 </script>
-<script src="../../assets/js/main2.js"></script>
+<script src="/assets/js/Front-office/main.js"></script>
+{{-- <script src="../../assets/js/main2.js"></script> --}}
 
 </html>
