@@ -24,7 +24,7 @@ class AddUserRequest extends FormRequest
         return [
             'name' => 'required|min:4',
             'email' => 'email|required|min:4',
-            'tele' => 'regex:/^\+?[0-9]{10,13}$/',
+            'tel' => 'regex:/^\+?[0-9]{10,13}$/',
             'password' => 'required|min:6|max:16|confirmed',
         ];
     }
