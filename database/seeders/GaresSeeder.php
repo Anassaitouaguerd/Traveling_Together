@@ -48,10 +48,46 @@ class GaresSeeder extends Seeder
             'Chefchaouen',
             'EL Khemisset'
         ];
-        foreach ($regions as $region) {
-            $Gare = new Gares();
-            $Gare->name = $region;
-            $Gare->save();
+        $ville_id = [
+            '1',
+            '14',
+            '2',
+            '5',
+            '3',
+            '7',
+            '4',
+            '9',
+            '18',
+            '95',
+            '8',
+            '10',
+            NULL,
+            '16',
+            '11',
+            '12',
+            '15',
+            '28',
+            '41',
+            NULL,
+            '1',
+            '1',
+            '1',
+            NULL,
+            '1',
+            '1',
+            '42',
+            '92',
+            NULL,
+            NULL,
+            '20',
+            '10',
+            '2',
+        ];
+        foreach ($regions as $key => $region) {
+            $gare = new Gares();
+            $gare->name = $region;
+            $gare->ville_id = $ville_id[$key];
+            $gare->save();
         }
     }
 }
