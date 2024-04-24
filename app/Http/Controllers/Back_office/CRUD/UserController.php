@@ -4,8 +4,7 @@ namespace App\Http\Controllers\Back_office\CRUD;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Back_office\Users\AddUserRequest;
-use App\Http\Requests\Back_office\Users\ImageUserRequest;
-use App\Http\Requests\UpdateUserRequest;
+use App\Http\Requests\Back_office\Users\UpdateUserRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -43,16 +42,13 @@ class UserController extends Controller
         return back()->with('success', 'Add User successful');
     }
 
-    public function Change_image_profile(ImageUserRequest $request)
+    public function Change_image_profile($image)
     {
-        $user = User::where('id', session('user_id'))->first();
-        $img = $request->file('image');
+        $img = $image;
         $image_name = $img->getClientOriginalName();
         $image = uniqid() . $image_name;
         $img->move('Uploads/', $image);
-        $user->image = $img;
-        $user->save();
-        return back()->with('success', 'Change image profile successful');
+        return $image;
     }
 
     /**
@@ -68,7 +64,12 @@ class UserController extends Controller
      */
     public function update(UpdateUserRequest $request, string $id)
     {
-        User::where('id', $id)->update($request->validated());
+        $image = $this->Change_image_profile($request->image);
+        User::where('id', $id)->update([
+            'name' => $request->name,
+            'email' => $request->email,
+            'image' => $image
+        ]);
         return back()->with('success', 'Update User successful');
     }
 
