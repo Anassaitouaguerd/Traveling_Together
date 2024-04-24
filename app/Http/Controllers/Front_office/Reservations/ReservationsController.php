@@ -41,7 +41,23 @@ class ReservationsController extends Controller
         if (in_array($request->selectedSeats, $Ordered_Places)) {
             return back()->with("error", "this place is reserved after");
         }
-
-        dd("done");
+        $date_now = now();
+        $user_id = session("user_id");
+        $voyage_id = $train->voyage->id;
+        $token = uniqid();
+        $reservation = Reservations::create([
+            'date_reservation' => $date_now,
+            'user_id' => $user_id,
+            'voyage_id' => $voyage_id,
+            'token_id' => $token,
+            'place' => $request->selectedSeats,
+        ]);
+        $reservation_id = $reservation->id;
+        return response()->json($reservation_id, 200);
+    }
+    public function ticketPage($reservation_id)
+    {
+        $reservation = Reservations::where('id', $reservation_id)->first();
+        return view("Front-office.Reservations.Ticket", compact('reservation'));
     }
 }
