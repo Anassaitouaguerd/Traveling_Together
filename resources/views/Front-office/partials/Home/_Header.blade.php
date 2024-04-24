@@ -1,9 +1,8 @@
 <header>
-
     <nav class="navbar navbar-expand-lg navbar-light bg-gradient ">
         <div class="container-fluid d-flex justify-content-between">
-            <a class="navbar-brand p-0 " href="#">
-                <img src="assets/img/logo_travle.png" alt="travling together logo" style="width: 150px">
+            <a class="navbar-brand p-0 " href="/index">
+                <img src="/assets/img/logo_travle.png" alt="travling together logo" style="width: 150px">
             </a>
             <button onclick="makeaMargin(this)" class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -12,7 +11,7 @@
             </button>
             <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
                 <ul class="navbar-nav mb-2 mb-lg-0">
-
+@if (!session()->has("user_id"))
                     <li class="nav-item">
                         <a class="nav-link active py-0 px-3 " id="login" aria-current="page" href="/login"
                             style="font-weight: 500;">
@@ -27,6 +26,7 @@
                                 up</span>
                         </a>
                     </li>
+@endif
                 </ul>
             </div>
         </div>
