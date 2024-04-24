@@ -19,6 +19,6 @@ class Trains extends Model
   }
   public function voyage()
   {
-    return $this->belongsTo(Voyages::class);
+    return $this->belongsTo(Voyages::class, 'voyage_id');
   }
 }
