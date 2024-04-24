@@ -1,45 +1,58 @@
-@extends('Front-office.partials.Reservation._tags_html')
+@extends('Front-office.partials.Reservation._tags_html_train')
 @section('content')
-    <div class="container">
-        <div class="py-5">
-            <form action="" method="post" class="p-lg-5  needs-validation" id="add_train_form" novalidate>
-                <div class="row gy-3">
-                    <div class="col-lg-6 text-start" style="position: relative;">
-                        <label for="" class="form-label ms-2" style="color:#80808078;">Nom de train</label>
-                        <input class="form-control" type="text" name="nom_train" id="nom_train" placeholder="exemple : train v1.." autocomplete="nope" required>
-                        <div class="invalid-feedback ms-2">
-                            veillez remplire le nom de train à ajouter.
-                        </div>
-                        <div class="rounded-bottom" style="background-color:aliceblue;position:absolute; width: 94%;z-index:100;max-height:31vh;overflow:auto;" id="cities_rst1"></div>
-                    </div>
-                    <div class="col-lg-6 text-start" style="position: relative;">
-                        <label for="" class="form-label ms-2" style="color:#80808078;">La gare</label>
-                        <input class="form-control " type="text" name="id_gare" id="id_gare" placeholder="exemple : Gare tanger ville.." autocomplete="false" required>
-                        <div class="rounded-bottom" style="background-color:aliceblue;position:absolute;z-index: 1000; width: 94%;max-height:31vh;overflow:auto;" id="cities_rst2"></div>
-                        <input type="hidden" value="" name="id_gare" id="id_holder">
-                    </div>
-                    <div class="col-lg-6 text-start">
-                        <label for="" class="form-label ms-2" style="color:#80808078;">Status</label>
-                        <select class="form-select" aria-label="Default select example" name="status" required>
-                            <option value="" selected>choisissez le status de train à ajouter</option>
-                            <option value="1">disponible</option>
-                            <option value="2">pas encore disponible</option>
-                        </select>
-                        <div class="invalid-feedback ms-2">
-                            veillez remplire la date de départ.
-                        </div>
-                    </div>
-                    <div class="col-lg-6 text-start">
-                        <label for="" class="form-label ms-2" style="color:#80808078;">Capacité</label>
-                        <input class="form-control" type="number" name="capacite" placeholder="exemple 52 place" required min="1">
-                    </div>
-                    <div class="text-start">
-                        <button type="submit" class="btn text-light px-5" style="background-color:var(--aqua);border-radius: 20px;" name="save-train">save</button>
+<section id="reservation" class="pt-5">
+    <div class="container p-5 text-center">
+        <h3 class="aqua" style="font-weight: bold;">
+
+            Réservez online et profitez
+            des meilleurs tarifs !
+        </h3>
+        <p class="text-grey">Explore the world with us </p>
+
+        <form action="/SearchTrains" method="POST" oninput="Search(event)" class="p-lg-5 needs-validation" autocomplete="off">
+            @csrf
+            <div class="row gy-3">
+                <div class="col-lg-6 text-start mb-5" style="position: relative;">
+                    <label for="" class="form-label ms-2" style="color:#80808078;">gare de depart</label>
+                    <input class="form-control" type="text" name="gare_depart" id="gare_depart"
+                        placeholder="Casa voyageur.." autocomplete="nope" required>
+                    <div class="rounded-bottom"
+                        style="background-color:aliceblue;position:absolute; width: 94%;z-index:100;max-height:31vh;overflow:auto;"
+                        id="cities_rst1"></div>
+                </div>
+                <div class="rounded-3" id="Parent" onclick="TackeValue(event)">
+                </div>
+                <div class="col-lg-6 text-start" style="position: relative;">
+                    <label for="" class="form-label ms-2" style="color:#80808078;">gare de distination</label>
+                    <input class="form-control " type="text" name="gare_distination" id="gare_distination"
+                        placeholder="Tanger ville.." autocomplete="false">
+                    <div class="rounded-bottom"
+                        style="background-color:aliceblue;position:absolute; width: 94%;max-height:31vh;overflow:auto;"
+                        id="cities_rst2"></div>
+                </div>
+                <div class="rounded-3" id="Parent2" onclick="TackeValueDest(event)">
+                </div>
+                <div class="col-lg-6 text-start">
+                    <label for="" class="form-label ms-2" style="color:#80808078;">date de départ</label>
+                    <input class="form-control" type="datetime-local" placeholder="date de depart"
+                        name="date_depart" required>
+                    <div class="invalid-feedback ms-2">
+                        veillez remplire la date de départ.
                     </div>
                 </div>
-            </form>
-        </div>
-
+                <div class="col-lg-6 text-start">
+                    <label for="" class="form-label ms-2" style="color:#80808078;">date de arrivee (optionel)</label>
+                    <input class="form-control" type="datetime-local" name="date_arrivee">
+                </div>
+                <div class="text-start">
+                    <button type="submit" class="btn text-light px-5"
+                        style="background-color:var(--aqua);border-radius: 20px;">cherchez</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</section>
+    <div class="container">
         <div class=' alert alert-dismissible fade show' role='alert' style='display: none;background-color: #dff9ff' id="train_msg_alert">
             <div class="d-flex justify-content-between">
                 <div>
@@ -64,15 +77,16 @@
         <table id="example" class="table table-striped mt-5" style='width:100%'>
             <thead>
                 <tr>
-                    <th># ID</th>
-                    <th>Name </th>
-                    <th>Gare</th>
-                    <th>Date-Depart</th>
-                    <th>Date-Arrivee</th>
-                    <th>Prix</th>
+                    <th ># ID</th>
+                    <th >Name </th>
+                    <th >Gare</th>
+                    <th >Date-Depart</th>
+                    <th >Date-Arrivee</th>
+                    <th >Prix</th>
+                    <th class="text-center">Action</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody>            
                 @foreach ($trains as $train)
                     
                 <tr>
@@ -122,8 +136,9 @@
                         {{$train->voyage->prix}}
                     </td>
                     <td>
-<button>by ticket </button>
-                        
+                        <a href="/By-ticket/{{$train->id}}">
+                            <button class="bg-opacit border-0 p-2 rounded-2 w-100"><strong>By ticket</strong> </button>
+                        </a>
                     </td>
                 </tr>
                 @endforeach
