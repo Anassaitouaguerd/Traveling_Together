@@ -73,7 +73,7 @@
                                     <div class=" mb-4">
                                         <div class="form-outline">
                                             <label class="form-label" for="form3Example2">Your Number</label>
-                                            <input type="number" placeholder="+212 | 61234589" name="tele" id="tele" class="form-control shesh"
+                                            <input type="number" placeholder="+212 | 61234589" name="tel" id="tele" class="form-control shesh"
                                                 required />
                                             <div class="valid-feedback">
                                                 Looks Good!
