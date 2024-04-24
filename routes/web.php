@@ -5,7 +5,9 @@ use App\Http\Controllers\Back_office\CRUD\GaresController;
 use App\Http\Controllers\Back_office\CRUD\TrainController;
 use App\Http\Controllers\Back_office\CRUD\UserController;
 use App\Http\Controllers\Back_office\CRUD\VoyageController;
+use App\Http\Controllers\Front_office\Profile\ProfileController;
 use App\Http\Controllers\Front_office\Reservations\ReservationsController;
+use App\Http\Controllers\Front_office\Reservations\SendEmail;
 use App\Http\Controllers\Front_office\SearchController;
 use Illuminate\Support\Facades\Route;
 
@@ -19,6 +21,7 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
 
 Route::get('/admin/dashboard', function () {
     return view('Back-office.dashboard');
@@ -63,6 +66,9 @@ Route::post('Search', [SearchController::class, 'index']);
 Route::post('/SearchTrains', [SearchController::class, 'FindTrains']);
 Route::get('/By-ticket/{id}', [ReservationsController::class, 'index']);
 Route::post('/reserve-place', [ReservationsController::class, 'resrvation']);
+Route::get('/My-profile', [ProfileController::class, 'profileView']);
+Route::get('/My-ticket/{reservation_id}', [ReservationsController::class, 'ticketPage']);
+Route::post('/Send-emailThanks', [SendEmail::class, 'sendEmail']);
 
 Route::resources([
     '/admin/voyage' => VoyageController::class,
