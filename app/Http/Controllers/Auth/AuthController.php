@@ -23,12 +23,9 @@ class AuthController extends Controller
     }
     public function newSingup(AddUserRequest $request)
     {
-        $this->user->name = $request->name;
-        $this->user->email = $request->email;
-        $this->user->tel = $request->tele;
-        $this->user->password = $request->password;
-        $this->user->save();
-        $request->session()->put('user_name', $this->user->name);
+        // dd($request);
+        $user = User::create($request->validated());
+        $request->session()->put('user_name', $user->name);
         return redirect('/index')->with('signup', 'Welcom,');
     }
     public function login(LoginUserRequest $request)
