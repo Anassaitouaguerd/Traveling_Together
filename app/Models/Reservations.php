@@ -12,7 +12,7 @@ class Reservations extends Model
     'date_reservation',
     'user_id',
     'voyage_id',
-    'is_tecket',
+    'token_id',
     'place',
   ];
   public function user()
