@@ -21,7 +21,7 @@ class Voyages extends Model
   }
   public function train()
   {
-    return $this->hasMany(Trains::class);
+    return $this->hasMany(Trains::class, 'voyage_id');
   }
   public function rolation_gare_depart()
   {
