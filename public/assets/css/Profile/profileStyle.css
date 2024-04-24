@@ -1,0 +1,79 @@
+body {
+    background: rgb(99, 39, 120);
+}
+.bg-bd {
+    background-color: caf0f8;
+}
+a {
+    text-decoration: none;
+}
+.no-decoration {
+    text-decoration: none;
+    color: black;
+}
+.form-control:focus {
+    box-shadow: none;
+    border-color: #ba68c8;
+}
+.divImaginer {
+    display: none;
+    position: absolute;
+    width: 150px;
+    height: 150px;
+    top: 28%;
+    background: rgba(0, 0, 0, 0.5);
+}
+.changeImage {
+    position: absolute;
+    top: 42%;
+    left: 27px;
+    color: aliceblue;
+}
+.position-rel {
+    position: relative;
+}
+.position-abs {
+    position: absolute;
+    top: 46%;
+}
+.profile-button {
+    background: rgb(99, 39, 120);
+    box-shadow: none;
+    border: none;
+}
+
+.profile-button:hover {
+    background: #682773;
+}
+
+.profile-button:focus {
+    background: #682773;
+    box-shadow: none;
+}
+
+.profile-button:active {
+    background: #682773;
+    box-shadow: none;
+}
+
+.back:hover {
+    color: #682773;
+    cursor: pointer;
+}
+
+.labels {
+    font-size: 11px;
+}
+
+.add-experience:hover {
+    background: #ba68c8;
+    color: #fff;
+    cursor: pointer;
+    border: solid 1px #ba68c8;
+}
+#profileImage:hover .divImaginer {
+    display: block;
+}
+.input-hidden {
+    display: none;
+}
