@@ -1,17 +1,3 @@
-<!--
-=========================================================
-* Soft UI Dashboard - v1.0.7
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/soft-ui-dashboard
-* Copyright 2023 Creative Tim (https://www.creative-tim.com)
-* Licensed under MIT (https://www.creative-tim.com/license)
-* Coded by Creative Tim
-
-=========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
--->
 <!DOCTYPE html>
 <html lang="en">
 
@@ -23,7 +9,7 @@
     <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
     <link rel="icon" type="image/png" href="../assets/img/favicon.png">
     <title>
-        Soft UI Dashboard by Creative Tim
+        Travling together 
     </title>
     <!--     Fonts and icons     -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
@@ -43,10 +29,10 @@
 </head>
 
 <body class="g-sidenav-show  bg-gray-100">
-    @include('partials/_side')
+    @include('Back-office.partials._side')
     <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
         <!-- Navbar -->
-        @include('partials/_nav')
+        @include('Back-office.partials._nav')
         <!-- End Navbar -->
         <div class="container-fluid py-4">
             <div class="row">
@@ -81,7 +67,7 @@
                                                 </button>
                                             </div>
                                             <div class="modal-body">
-                                                <form action="/admin/newUser" method="POST" class="mt-4"
+                                                <form action="/admin/crud/user" method="POST" class="mt-4"
                                                     enctype="multipart/form-data">
                                                     @csrf
                                                     <div class="form-group">
@@ -95,17 +81,25 @@
                                                             name="email" placeholder="Enter Email">
                                                     </div>
                                                     <div class="form-group">
+                                                        <label for="name">Telephone</label>
+                                                        <input type="tele" class="form-control" id="tel"
+                                                            name="tel" placeholder="Enter Telephone">
+                                                    </div>
+                                                    <div class="form-group">
                                                         <label for="name">Password User</label>
                                                         <input type="password" class="form-control" id="password"
                                                             name="password" placeholder="Enter Password">
                                                     </div>
                                                     <div class="form-group">
+                                                        <label for="name">Confirme Password</label>
+                                                        <input type="password" class="form-control" id="Cpassword"
+                                                            name="password_confirmation" placeholder="Enter Password">
+                                                    </div>
+                                                    <div class="form-group">
                                                         <label for="role">Role User</label>
                                                         <select class="form-control" id="role" name="role">
-                                                            @foreach ($allRole as $role)
-                                                                <option value="{{ $role->id }}">{{ $role->role }}
-                                                                </option>
-                                                            @endforeach
+                                                           <option value="client">Client</option>
+
                                                         </select>
                                                     </div>
                                             </div>
@@ -128,15 +122,16 @@
                                             </div>
                                         @endif
                                         <ul class="list-group">
-                                            @foreach ($allUser as $user)
+                                            @foreach ($users as $user)
                                                 <li
                                                     class="list-group-item border-0 d-flex justify-content-center p-4 mb-2 bg-gray-100 border-radius-lg">
                                                     <div class="d-flex justify-content-center align-items-center">
                                                         <h5 class="ms-4 mb-3 text-sm"> {{ $user->name }}</h5>
                                                         <h5 class="ms-4 mb-3 text-sm"> {{ $user->email }}</h5>
+                                                        <h5 class="ms-4 mb-3 text-sm"> {{ $user->tel }}</h5>
                                                         <h5
                                                             class="ms-4 mb-3 text-sm rounded-3 text-center bg-body-secondary p-2">
-                                                            {{ $user->role->role }}</h5>
+                                                            {{ $user->role }}</h5>
                                                     </div>
                                                     <div class="ms-auto text-end">
                                                         <button
@@ -169,12 +164,10 @@
                                                                     </button>
                                                                 </div>
                                                                 <div class="modal-body">
-                                                                    <form action="/admin/updateUser" method="POST"
+                                                                    <form action="/admin/crud/user/{{$user->id}}" method="POST"
                                                                         class="mt-4">
                                                                         @csrf
-                                                                        <input type="hidden"
-                                                                            value="{{ $user->id }}"
-                                                                            name="id">
+                                                                        @method("PUT")
                                                                         <div class="form-group">
                                                                             <label for="name">Name User</label>
                                                                             <input type="text"
@@ -192,27 +185,27 @@
                                                                                 placeholder="Enter Email">
                                                                         </div>
                                                                         <div class="form-group">
+                                                                            <label for="name">Telephone</label>
+                                                                            <input type="tele"
+                                                                                value="{{ $user->tel }}"
+                                                                                class="form-control" id="tel"
+                                                                                name="tel"
+                                                                                placeholder="Enter telephone">
+                                                                        </div>
+                                                                        <div class="form-group">
                                                                             <label for="name">Password User</label>
                                                                             <input type="password"
                                                                                 class="form-control" id="password"
                                                                                 name="password"
                                                                                 placeholder="Enter Password">
-                                                                        </div>
+                                                                        </div>  
                                                                         <div class="form-group">
-                                                                            <label for="role">Role User</label>
-                                                                            <select class="form-control"
-                                                                                id="role" name="role">
-                                                                                @foreach ($allRole as $role)
-                                                                                    <option
-                                                                                        value="{{ $role->id }}">
-                                                                                        {{ $role->role }}
-                                                                                    </option>
-                                                                                @endforeach
-                                                                            </select>
-                                                                        </div>
-
-
-
+                                                                            <label for="name">Confirme Password</label>
+                                                                            <input type="password"
+                                                                                class="form-control" id="Cpassword"
+                                                                                name="password_confirmation"
+                                                                                placeholder="Enter Password confirmation">
+                                                                        </div>  
                                                                 </div>
                                                                 <div class="modal-footer">
                                                                     <button type="button" class="btn btn-secondary"
@@ -250,11 +243,9 @@
                                                                 <div class="modal-footer">
                                                                     <button type="button" class="btn btn-secondary"
                                                                         data-bs-dismiss="modal">Cancel</button>
-                                                                    <form action="/admin/deleteUser" method="POST">
+                                                                    <form action="/admin/crud/user/{{ $user->id }}" method="POST">
                                                                         @csrf
-                                                                        <input type="hidden"
-                                                                            value="{{ $user->id }}"
-                                                                            name="id">
+                                                                        @method("DELETE")
                                                                         <button type="submit"
                                                                             class="btn btn-danger">Delete</button>
                                                                     </form>
@@ -275,7 +266,7 @@
                     </div>
                 </div>
 
-                @include('partials/_footer')
+                @include('Back-office.partials._footer')
 
 
             </div>
@@ -285,10 +276,10 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous">
     </script>
-    <script src="../assets/js/core/popper.min.js"></script>
-    <script src="../assets/js/core/bootstrap.min.js"></script>
-    <script src="../assets/js/plugins/perfect-scrollbar.min.js"></script>
-    <script src="../assets/js/plugins/smooth-scrollbar.min.js"></script>
+    <script src="/assets/js/core/popper.min.js"></script>
+    <script src="/assets/js/core/bootstrap.min.js"></script>
+    <script src="/assets/js/plugins/perfect-scrollbar.min.js"></script>
+    <script src="/assets/js/plugins/smooth-scrollbar.min.js"></script>
     <script>
         var win = navigator.platform.indexOf('Win') > -1;
         if (win && document.querySelector('#sidenav-scrollbar')) {
@@ -305,7 +296,7 @@
     <!-- Github buttons -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
-    <script src="../assets/js/soft-ui-dashboard.min.js?v=1.0.7"></script>
+    <script src="/assets/js/soft-ui-dashboard.min.js?v=1.0.7"></script>
 </body>
 
 </html>
