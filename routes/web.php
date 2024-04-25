@@ -1,10 +1,12 @@
 <?php
 
 use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\Back_office\CRUD\AdminUsers\AdminUsersController;
 use App\Http\Controllers\Back_office\CRUD\GaresController;
 use App\Http\Controllers\Back_office\CRUD\TrainController;
 use App\Http\Controllers\Back_office\CRUD\UserController;
 use App\Http\Controllers\Back_office\CRUD\VoyageController;
+use App\Http\Controllers\Back_office\Statistique\StatistiqueController;
 use App\Http\Controllers\Front_office\Profile\ProfileController;
 use App\Http\Controllers\Front_office\Reservations\ReservationsController;
 use App\Http\Controllers\Front_office\Reservations\SendEmail;
@@ -23,9 +25,6 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::get('/admin/dashboard', function () {
-    return view('Back-office.dashboard');
-});
 Route::get('/home', function () {
     return view('Front-office.homepage');
 });
@@ -47,9 +46,10 @@ Route::get('/index', function () {
 Route::get('/forgotPage', function () {
     return view('Front-office.Forgot-password.forgot');
 });
-// Route::get('/SearchTrains', function () {
-//     return view('Front-office.Reservations.trains');
-// });
+
+# part dashboard 
+
+Route::get('/admin/dashboard', [StatistiqueController::class, "index"]);
 
 # parte Authentication 
 
@@ -66,13 +66,21 @@ Route::post('Search', [SearchController::class, 'index']);
 Route::post('/SearchTrains', [SearchController::class, 'FindTrains']);
 Route::get('/By-ticket/{id}', [ReservationsController::class, 'index']);
 Route::post('/reserve-place', [ReservationsController::class, 'resrvation']);
-Route::get('/My-profile', [ProfileController::class, 'profileView']);
+Route::get('/My-profile', [ProfileController::class, 'profileView'])->middleware("CheckAuth");
 Route::get('/My-ticket/{reservation_id}', [ReservationsController::class, 'ticketPage']);
 Route::post('/Send-emailThanks', [SendEmail::class, 'sendEmail']);
 
-Route::resources([
-    '/admin/voyage' => VoyageController::class,
-    '/admin/gare' => GaresController::class,
-    '/admin/train' => TrainController::class,
-    '/admin/user' => UserController::class
-]);
+Route::middleware('CheckAdmin')->group(function () {
+    Route::resources([
+        '/admin/voyage' => VoyageController::class,
+        '/admin/gare' => GaresController::class,
+        '/admin/train' => TrainController::class,
+        '/admin/crud/user' => AdminUsersController::class
+    ]);
+});
+
+Route::middleware('CheckAuth')->group(function () {
+    Route::resources([
+        '/admin/user' => UserController::class
+    ]);
+});
